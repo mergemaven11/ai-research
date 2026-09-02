@@ -1,0 +1,25 @@
+[project]
+name = "ai-research-lab"
+version = "0.1.0"
+description = "Reproducible AI systems research experiments"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=2.0",
+  "pandas>=2.2",
+  "scikit-learn>=1.5",
+  "matplotlib>=3.9",
+  "jupyterlab>=4.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "ruff>=0.6",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
