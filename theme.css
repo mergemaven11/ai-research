@@ -73,6 +73,7 @@
 .lab-section,
 .homework-section{transition:border-color .2s ease}
 
+.course-resources-card,
 .progress-storage-card{
   display:grid;
   gap:4px;
@@ -83,17 +84,33 @@
   background:rgba(255,255,255,.04);
 }
 
+.course-resources-card{
+  background:linear-gradient(145deg,rgba(108,99,255,.16),rgba(217,70,239,.08));
+  border-color:rgba(108,99,255,.25);
+}
+
+.course-resources-card strong,
 .progress-storage-card strong{
   color:#fff;
   font-size:.84rem;
 }
 
+.course-resources-card span,
 .progress-storage-card span{
   color:rgba(255,255,255,.62);
   font-size:.74rem;
   line-height:1.35;
 }
 
+.course-resources-card .resource-kicker{
+  color:#c6c2ff;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.62rem;
+  font-weight:800;
+}
+
+.course-guide-button,
 .reset-progress-button{
   margin-top:7px;
   width:100%;
@@ -101,10 +118,22 @@
   border-radius:10px;
   padding:8px 10px;
   background:transparent;
-  color:rgba(255,255,255,.82);
+  color:rgba(255,255,255,.88);
   font:inherit;
   font-size:.78rem;
   cursor:pointer;
+}
+
+.course-guide-button{
+  border-color:rgba(108,99,255,.42);
+  background:rgba(108,99,255,.18);
+  color:#fff;
+}
+
+.course-guide-button:hover,
+.course-guide-button:focus-visible{
+  background:rgba(108,99,255,.28);
+  border-color:#6C63FF;
 }
 
 .reset-progress-button:hover,
@@ -112,6 +141,58 @@
   border-color:#D946EF;
   color:#fff;
   background:rgba(217,70,239,.12);
+}
+
+.course-guide-dialog{
+  width:min(860px,calc(100vw - 32px));
+  max-height:min(820px,calc(100vh - 32px));
+  border:0;
+  border-radius:24px;
+  padding:0;
+  color:#12162a;
+  background:#f8f9ff;
+  box-shadow:0 30px 90px rgba(5,8,24,.35);
+}
+
+.course-guide-dialog::backdrop{
+  background:rgba(5,8,24,.68);
+  backdrop-filter:blur(8px);
+}
+
+.course-guide-shell{padding:28px}
+.course-guide-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+.course-guide-head h2{margin:.15rem 0 .4rem;font-size:clamp(1.7rem,4vw,2.45rem)}
+.course-guide-head p:not(.eyebrow){margin:0;color:#626982;max-width:62ch}
+.course-guide-close{width:42px;height:42px;border:1px solid #e1e4ef;border-radius:50%;background:#fff;color:#272c43;font-size:1.7rem;line-height:1;cursor:pointer;flex:0 0 auto}
+.course-guide-close:hover,.course-guide-close:focus-visible{border-color:#6C63FF;color:#6C63FF}
+
+.course-guide-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:24px 0;padding:14px 16px;border-radius:16px;background:#101327;color:#fff}
+.course-guide-flow span{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.84rem;font-weight:750}
+.course-guide-flow b{color:#8ea0ff}
+
+.course-guide-modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.course-guide-modules article{display:flex;gap:14px;padding:18px;border:1px solid #e4e6f0;border-radius:18px;background:#fff}
+.course-guide-modules article:nth-child(1){border-top:4px solid #6C63FF}
+.course-guide-modules article:nth-child(2){border-top:4px solid #D946EF}
+.course-guide-modules article:nth-child(3){border-top:4px solid #10B981}
+.course-guide-modules article:nth-child(4){border-top:4px solid #0EA5E9}
+.guide-number{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#f0f1ff;color:#4e47d8;font-weight:900;font-size:.75rem;flex:0 0 auto}
+.course-guide-modules strong{display:block;font-size:.98rem;color:#181c31}
+.course-guide-modules small{display:block;margin:.12rem 0 .45rem;color:#777e95;font-weight:700}
+.course-guide-modules p{margin:0;color:#5f667c;font-size:.84rem;line-height:1.5}
+.course-guide-note{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:16px;padding:18px;border-radius:16px;background:linear-gradient(120deg,rgba(108,99,255,.1),rgba(14,165,233,.08))}
+.course-guide-note strong{color:#2d2a73}
+.course-guide-note span{color:#626982;font-size:.86rem;text-align:right;max-width:520px}
+
+.dashboard-hero .course-guide-launcher{
+  text-decoration:none;
+}
+
+@media (max-width:720px){
+  .course-guide-shell{padding:20px}
+  .course-guide-modules{grid-template-columns:1fr}
+  .course-guide-note{display:grid}
+  .course-guide-note span{text-align:left}
 }
 
 @media (prefers-reduced-motion:reduce){
