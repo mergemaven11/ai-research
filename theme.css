@@ -143,6 +143,35 @@
   background:rgba(217,70,239,.12);
 }
 
+.portfolio-return{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:11px 12px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  background:rgba(255,255,255,.035);
+  color:#fff;
+  text-decoration:none;
+  transition:transform .18s ease,border-color .18s ease,background .18s ease;
+}
+
+.portfolio-return>span:first-child{
+  display:grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  background:linear-gradient(135deg,#6C63FF,#0EA5E9);
+  font-weight:900;
+}
+
+.portfolio-return strong,
+.portfolio-return small{display:block}
+.portfolio-return strong{font-size:.8rem;color:#fff}
+.portfolio-return small{margin-top:2px;font-size:.68rem;color:rgba(255,255,255,.55)}
+.portfolio-return:hover,.portfolio-return:focus-visible{transform:translateY(-1px);border-color:rgba(14,165,233,.42);background:rgba(14,165,233,.08)}
+
 .course-guide-dialog{
   width:min(860px,calc(100vw - 32px));
   max-height:min(820px,calc(100vh - 32px));
@@ -184,9 +213,7 @@
 .course-guide-note strong{color:#2d2a73}
 .course-guide-note span{color:#626982;font-size:.86rem;text-align:right;max-width:520px}
 
-.dashboard-hero .course-guide-launcher{
-  text-decoration:none;
-}
+.dashboard-hero .course-guide-launcher{text-decoration:none}
 
 @media (max-width:720px){
   .course-guide-shell{padding:20px}
@@ -196,5 +223,5 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .brand-mark,.primary-button{transition:none}
+  .brand-mark,.primary-button,.portfolio-return{transition:none}
 }
