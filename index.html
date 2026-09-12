@@ -3,227 +3,295 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A visual, hands-on AI research curriculum built around diagrams, small labs, and clear learning checkpoints." />
-  <title>AI Research Lab — Visual Curriculum</title>
+  <meta name="description" content="A hands-on, visual AI curriculum built as an immersive Three.js learning journey with Mermaid.js diagrams." />
+  <title>AI Research Lab — Immersive Visual Curriculum</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
-    <div class="wrapper hero-grid">
-      <div>
-        <span class="eyebrow">Visual • Hands-on • Learn in layers</span>
-        <h1>AI Research Lab</h1>
-        <p class="lead">Learn AI by seeing the system, building a small piece, breaking it safely, fixing it, and explaining what happened.</p>
-        <nav class="jump-links" aria-label="Page sections">
-          <a href="#map">Learning map</a>
-          <a href="#loop">Learning loop</a>
-          <a href="#curriculum">12-week curriculum</a>
-          <a href="#start">Start Week 1</a>
-        </nav>
-      </div>
-      <aside class="hero-note" aria-label="How to use this curriculum">
-        <h2>Use this page like a map 🗺️</h2>
-        <p>You do <strong>not</strong> need to memorize everything first.</p>
-        <ol>
-          <li>Look at the picture.</li>
-          <li>Build the smallest working version.</li>
-          <li>Change one thing.</li>
-          <li>Observe what changed.</li>
-          <li>Explain it in your own words.</li>
-        </ol>
-      </aside>
+  <a class="skip-link" href="#story">Skip 3D experience</a>
+
+  <div id="experience" aria-hidden="true">
+    <canvas id="world-canvas"></canvas>
+    <div class="grain"></div>
+    <div class="vignette"></div>
+  </div>
+
+  <div class="loading-screen" id="loading-screen" role="status" aria-live="polite">
+    <div class="loading-mark">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <p>Building your AI learning world…</p>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#intro" aria-label="AI Research Lab home">
+      <span class="brand-dot"></span>
+      <span>AI Research Lab</span>
+    </a>
+    <div class="topbar-actions">
+      <button id="explore-toggle" class="ghost-button" type="button" aria-pressed="false">Explore 3D</button>
+      <a class="ghost-button" href="docs/lesson-plan.md">Detailed notes</a>
     </div>
   </header>
 
-  <main>
-    <section id="map">
-      <div class="wrapper">
-        <p class="kicker">Big picture first</p>
-        <h2>Your AI learning map</h2>
-        <p class="section-intro">The full 12 weeks fit into four simple phases. Each phase has a color, a goal, and something real to build.</p>
-        <div class="grid-4">
-          <article class="card phase-card first-color">
-            <span class="phase-number">1</span>
-            <h3>Foundations</h3>
-            <p><strong>Weeks 1–3</strong></p>
-            <p>Learn experiments, machine learning basics, tokens, embeddings, transformers, and prompting.</p>
-            <p class="deliverable">Build: <strong>model behavior benchmark</strong></p>
-          </article>
-          <article class="card phase-card second-color">
-            <span class="phase-number">2</span>
-            <h3>AI Systems</h3>
-            <p><strong>Weeks 4–6</strong></p>
-            <p>Learn semantic search, RAG, citations, tools, workflows, agents, and approval boundaries.</p>
-            <p class="deliverable">Build: <strong>cited research assistant</strong></p>
-          </article>
-          <article class="card phase-card third-color">
-            <span class="phase-number">3</span>
-            <h3>Quality + Safety</h3>
-            <p><strong>Weeks 7–9</strong></p>
-            <p>Measure answer quality, trace failures, test reliability, and safely red-team your system.</p>
-            <p class="deliverable">Build: <strong>evaluation + safety harness</strong></p>
-          </article>
-          <article class="card phase-card fourth-color">
-            <span class="phase-number">4</span>
-            <h3>Production + Governance</h3>
-            <p><strong>Weeks 10–12</strong></p>
-            <p>Serve APIs, use Docker and CI, monitor systems, and add risk controls and audit evidence.</p>
-            <p class="deliverable">Build: <strong>governed AI service</strong></p>
-          </article>
+  <nav class="progress-rail" aria-label="Curriculum phases">
+    <a href="#foundations" data-stop-link="1" aria-label="Foundations"><span class="rail-dot first-color"></span><b>01</b></a>
+    <a href="#systems" data-stop-link="2" aria-label="AI systems"><span class="rail-dot second-color"></span><b>02</b></a>
+    <a href="#quality" data-stop-link="3" aria-label="Quality and safety"><span class="rail-dot third-color"></span><b>03</b></a>
+    <a href="#production" data-stop-link="4" aria-label="Production and governance"><span class="rail-dot fourth-color"></span><b>04</b></a>
+  </nav>
+
+  <div id="node-tooltip" class="node-tooltip" hidden></div>
+
+  <main id="story">
+    <section id="intro" class="chapter hero-chapter" data-stop="0">
+      <div class="story-card hero-card">
+        <p class="eyebrow">Three.js + Mermaid.js • hands-on visual learning</p>
+        <h1>Travel through an <span>AI system</span>, don’t just read about one.</h1>
+        <p class="lead">Scroll through a 3D learning world. Each district teaches one layer of modern AI with a picture, a tiny build, a controlled failure, and a teach-back check.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#foundations">Enter the curriculum ↓</a>
+          <button class="secondary-button" id="motion-toggle" type="button" aria-pressed="false">Reduce motion</button>
         </div>
+        <div class="legend" aria-label="Color legend">
+          <span><i class="first-color"></i>Foundations</span>
+          <span><i class="second-color"></i>AI Systems</span>
+          <span><i class="third-color"></i>Quality + Safety</span>
+          <span><i class="fourth-color"></i>Production + Governance</span>
+        </div>
+        <p class="scroll-cue">SCROLL TO MOVE THROUGH THE WORLD <span>↓</span></p>
       </div>
     </section>
 
-    <section id="loop" class="soft-section">
-      <div class="wrapper">
-        <p class="kicker">How every lesson works</p>
-        <h2>See → Build → Break → Fix → Explain</h2>
-        <div class="learning-loop" aria-label="Five step hands-on learning loop">
-          <div class="loop-step first-color"><span>👀</span><strong>SEE</strong><small>Diagram + example</small></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="loop-step second-color"><span>🛠️</span><strong>BUILD</strong><small>Small working lab</small></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="loop-step third-color"><span>🧪</span><strong>BREAK</strong><small>Change one variable</small></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="loop-step fourth-color"><span>🔧</span><strong>FIX</strong><small>Debug with evidence</small></div>
-          <div class="arrow" aria-hidden="true">→</div>
-          <div class="loop-step explain"><span>🧠</span><strong>EXPLAIN</strong><small>Teach it back</small></div>
+    <section id="foundations" class="chapter" data-stop="1" data-accent="#ffcece">
+      <div class="story-card phase-panel first-panel">
+        <div class="phase-heading">
+          <p class="phase-index">01 / FOUNDATIONS</p>
+          <h2>First, learn how information becomes a model output.</h2>
+          <p>You do not start by memorizing transformer math. Start by watching information move through a simple system, then build one small piece yourself.</p>
         </div>
 
-        <div class="grid-3 spaced">
-          <article class="card layer first-color">
-            <strong>Layer 1 — Plain English</strong>
-            <p>What is this thing? Why do we care? What problem does it solve?</p>
-          </article>
-          <article class="card layer third-color">
-            <strong>Layer 2 — Visual model</strong>
-            <p>Follow the data through a diagram before reading dense implementation details.</p>
-          </article>
-          <article class="card layer fourth-color">
-            <strong>Layer 3 — Deep dive</strong>
-            <p>Now learn the technical vocabulary, tradeoffs, failure modes, metrics, and implementation details.</p>
-          </article>
+        <div class="visual-lesson">
+          <div class="diagram-shell">
+            <div class="diagram-label">SEE IT</div>
+            <pre class="mermaid">
+flowchart LR
+  A[Text] --> B[Tokens]
+  B --> C[Embeddings]
+  C --> D[Model]
+  D --> E[Prediction]
+  style A fill:#ffcece,stroke:#172033,stroke-width:2px
+  style B fill:#ffc1c8,stroke:#172033,stroke-width:2px
+  style C fill:#ffe3b0,stroke:#172033,stroke-width:2px
+  style D fill:#8ed6ff,stroke:#172033,stroke-width:2px
+  style E fill:#ffffff,stroke:#172033,stroke-width:2px
+            </pre>
+          </div>
+
+          <div class="learning-stack">
+            <article><span>👀 SEE</span><p>Follow text → tokens → vectors → model → output.</p></article>
+            <article><span>🛠 BUILD</span><p>Train a tiny text classifier and save its exact run command.</p></article>
+            <article><span>🧪 BREAK</span><p>Change one variable: seed, data split, or feature method.</p></article>
+            <article><span>🔧 FIX</span><p>Make the experiment reproducible and compare against a baseline.</p></article>
+            <article><span>🧠 EXPLAIN</span><p>Teach back what changed and why the metric moved.</p></article>
+          </div>
         </div>
+
+        <details class="week-drawer" open>
+          <summary>Weeks 1–3 <span>open the mini curriculum</span></summary>
+          <div class="week-list">
+            <div><b>Week 1</b><span>Reproducible experiments</span><small>Build the same benchmark twice.</small></div>
+            <div><b>Week 2</b><span>Machine learning basics</span><small>Train + compare a tiny classifier.</small></div>
+            <div><b>Week 3</b><span>Transformers + prompting</span><small>Compare three prompt strategies.</small></div>
+          </div>
+        </details>
       </div>
     </section>
 
-    <section id="curriculum">
-      <div class="wrapper">
-        <p class="kicker">Simple curriculum</p>
-        <h2>12 weeks, one concrete outcome each week</h2>
-        <p class="section-intro">Aim for a small working artifact every week. Theory supports the build instead of replacing it.</p>
-
-        <div class="weeks">
-          <details class="week-card first-color" open>
-            <summary><span>Week 1</span> Reproducible experiments</summary>
-            <div class="week-grid"><p><strong>See:</strong> hypothesis → experiment → evidence → decision.</p><p><strong>Do:</strong> run the same benchmark twice.</p><p><strong>Check:</strong> can someone else repeat it?</p></div>
-          </details>
-          <details class="week-card first-color">
-            <summary><span>Week 2</span> Machine learning basics</summary>
-            <div class="week-grid"><p><strong>See:</strong> data → features → model → prediction → metric.</p><p><strong>Do:</strong> train a small text classifier.</p><p><strong>Check:</strong> compare it with a simple baseline.</p></div>
-          </details>
-          <details class="week-card first-color">
-            <summary><span>Week 3</span> Transformers + prompting</summary>
-            <div class="week-grid"><p><strong>See:</strong> text → tokens → context → model → output.</p><p><strong>Do:</strong> compare three prompt strategies.</p><p><strong>Check:</strong> record accuracy, latency, and failure types.</p></div>
-          </details>
-
-          <details class="week-card second-color">
-            <summary><span>Week 4</span> Embeddings + semantic search</summary>
-            <div class="week-grid"><p><strong>See:</strong> document → chunks → vectors → similarity.</p><p><strong>Do:</strong> create a tiny search index.</p><p><strong>Check:</strong> does the right evidence appear in top results?</p></div>
-          </details>
-          <details class="week-card second-color">
-            <summary><span>Week 5</span> RAG</summary>
-            <div class="week-grid"><p><strong>See:</strong> question → retrieve → evidence → answer + citation.</p><p><strong>Do:</strong> build an evidence-grounded Q&amp;A pipeline.</p><p><strong>Check:</strong> make unsupported answers fail safely.</p></div>
-          </details>
-          <details class="week-card second-color">
-            <summary><span>Week 6</span> Agents + tools</summary>
-            <div class="week-grid"><p><strong>See:</strong> request → route → tool → result → decision.</p><p><strong>Do:</strong> add two read-only tools.</p><p><strong>Check:</strong> require approval before simulated writes.</p></div>
-          </details>
-
-          <details class="week-card third-color">
-            <summary><span>Week 7</span> Evaluation engineering</summary>
-            <div class="week-grid"><p><strong>See:</strong> test case → expected behavior → score → gate.</p><p><strong>Do:</strong> build an evaluation runner.</p><p><strong>Check:</strong> decide what blocks a release.</p></div>
-          </details>
-          <details class="week-card third-color">
-            <summary><span>Week 8</span> Observability + reliability</summary>
-            <div class="week-grid"><p><strong>See:</strong> request → logs → traces → metrics → diagnosis.</p><p><strong>Do:</strong> instrument your assistant.</p><p><strong>Check:</strong> explain one failure from telemetry alone.</p></div>
-          </details>
-          <details class="week-card third-color">
-            <summary><span>Week 9</span> AI security + red teaming</summary>
-            <div class="week-grid"><p><strong>See:</strong> threat → attack path → control → test.</p><p><strong>Do:</strong> create a safe red-team dataset.</p><p><strong>Check:</strong> measure whether defenses actually help.</p></div>
-          </details>
-
-          <details class="week-card fourth-color">
-            <summary><span>Week 10</span> APIs + Docker</summary>
-            <div class="week-grid"><p><strong>See:</strong> client → API → AI pipeline → response.</p><p><strong>Do:</strong> expose a FastAPI endpoint and containerize it.</p><p><strong>Check:</strong> health check + tests pass.</p></div>
-          </details>
-          <details class="week-card fourth-color">
-            <summary><span>Week 11</span> CI/CD + model operations</summary>
-            <div class="week-grid"><p><strong>See:</strong> commit → tests → evals → build → release.</p><p><strong>Do:</strong> create GitHub Actions gates.</p><p><strong>Check:</strong> intentionally fail a gate, then fix it.</p></div>
-          </details>
-          <details class="week-card fourth-color">
-            <summary><span>Week 12</span> Responsible AI governance</summary>
-            <div class="week-grid"><p><strong>See:</strong> risk → owner → control → evidence → decision.</p><p><strong>Do:</strong> create a system card + risk register.</p><p><strong>Check:</strong> run a mock incident drill.</p></div>
-          </details>
+    <section id="systems" class="chapter" data-stop="2" data-accent="#ffc1c8">
+      <div class="story-card phase-panel second-panel">
+        <div class="phase-heading">
+          <p class="phase-index">02 / AI SYSTEMS</p>
+          <h2>Now connect the model to knowledge and tools.</h2>
+          <p>The model is only one building. Retrieval, citations, tools, routing, and approval gates are the roads that make the whole city useful.</p>
         </div>
+
+        <div class="visual-lesson reverse">
+          <div class="diagram-shell">
+            <div class="diagram-label">RAG IN ONE PICTURE</div>
+            <pre class="mermaid">
+flowchart LR
+  Q[Question] --> R[Retrieve]
+  D[(Documents)] --> R
+  R --> E[Evidence]
+  E --> M[Model]
+  Q --> M
+  M --> A[Answer + Citation]
+  style Q fill:#ffcece,stroke:#172033,stroke-width:2px
+  style R fill:#ffc1c8,stroke:#172033,stroke-width:2px
+  style D fill:#ffe3b0,stroke:#172033,stroke-width:2px
+  style E fill:#ffe3b0,stroke:#172033,stroke-width:2px
+  style M fill:#8ed6ff,stroke:#172033,stroke-width:2px
+  style A fill:#ffffff,stroke:#172033,stroke-width:2px
+            </pre>
+          </div>
+
+          <div class="concept-callout">
+            <p class="big-word">RAG</p>
+            <p><strong>Plain English:</strong> look up useful evidence first, then let the model answer using that evidence.</p>
+            <p><strong>Hands-on test:</strong> ask a question whose answer is not in the documents. Your app should say “I don’t have enough evidence” instead of guessing.</p>
+          </div>
+        </div>
+
+        <details class="week-drawer">
+          <summary>Weeks 4–6 <span>open the mini curriculum</span></summary>
+          <div class="week-list">
+            <div><b>Week 4</b><span>Embeddings + search</span><small>Turn chunks into vectors and retrieve them.</small></div>
+            <div><b>Week 5</b><span>RAG</span><small>Build cited answers from retrieved evidence.</small></div>
+            <div><b>Week 6</b><span>Agents + tools</span><small>Add two tools and one approval gate.</small></div>
+          </div>
+        </details>
       </div>
     </section>
 
-    <section id="mental-model" class="soft-section">
-      <div class="wrapper">
-        <p class="kicker">Keep this picture in your head</p>
-        <h2>How a modern AI app fits together</h2>
-        <div class="system-flow" aria-label="AI application system flow">
-          <div class="flow-node first-color">👤<strong>User</strong></div><span>→</span>
-          <div class="flow-node second-color">🧾<strong>Prompt</strong></div><span>→</span>
-          <div class="flow-node third-color">🔎<strong>Retrieve / Tools</strong></div><span>→</span>
-          <div class="flow-node fourth-color">🤖<strong>Model</strong></div><span>→</span>
-          <div class="flow-node first-color">✅<strong>Checks</strong></div><span>→</span>
-          <div class="flow-node second-color">💬<strong>Answer</strong></div>
+    <section id="quality" class="chapter" data-stop="3" data-accent="#ffe3b0">
+      <div class="story-card phase-panel third-panel">
+        <div class="phase-heading">
+          <p class="phase-index">03 / QUALITY + SAFETY</p>
+          <h2>Make failure visible before users find it for you.</h2>
+          <p>Reliable AI is not “the demo looked good.” You need repeatable tests, traces, red-team cases, release gates, and an explanation for every important failure.</p>
         </div>
-        <p class="callout"><strong>Important:</strong> the model is only one piece of the system. Retrieval, tools, validation, observability, and governance are what turn a model into a reliable application.</p>
+
+        <div class="visual-lesson">
+          <div class="diagram-shell">
+            <div class="diagram-label">TEST THE SYSTEM</div>
+            <pre class="mermaid">
+flowchart TD
+  T[Test Case] --> S[Run System]
+  S --> O[Observe Output]
+  O --> G{Pass Gate?}
+  G -- Yes --> P[Ship]
+  G -- No --> F[Inspect Trace]
+  F --> X[Fix]
+  X --> T
+  style T fill:#ffcece,stroke:#172033,stroke-width:2px
+  style S fill:#ffc1c8,stroke:#172033,stroke-width:2px
+  style O fill:#ffe3b0,stroke:#172033,stroke-width:2px
+  style G fill:#8ed6ff,stroke:#172033,stroke-width:2px
+  style P fill:#ffffff,stroke:#172033,stroke-width:2px
+  style F fill:#ffe3b0,stroke:#172033,stroke-width:2px
+  style X fill:#8ed6ff,stroke:#172033,stroke-width:2px
+            </pre>
+          </div>
+
+          <div class="lab-card">
+            <span class="lab-tag">BREAK IT ON PURPOSE</span>
+            <h3>Your lab</h3>
+            <p>Create five inputs designed to make the system fail. Record what happened. Add one defense. Run the same five inputs again.</p>
+            <div class="score-strip"><span>Before</span><b>→</b><span>Defense</span><b>→</b><span>After</span></div>
+          </div>
+        </div>
+
+        <details class="week-drawer">
+          <summary>Weeks 7–9 <span>open the mini curriculum</span></summary>
+          <div class="week-list">
+            <div><b>Week 7</b><span>Evaluation engineering</span><small>Turn expected behavior into release gates.</small></div>
+            <div><b>Week 8</b><span>Observability</span><small>Diagnose failures from logs + traces.</small></div>
+            <div><b>Week 9</b><span>AI security</span><small>Red-team safely and measure defenses.</small></div>
+          </div>
+        </details>
       </div>
     </section>
 
-    <section id="start">
-      <div class="wrapper">
-        <p class="kicker">Do something now</p>
-        <h2>Week 1: your first 45-minute lab</h2>
-        <div class="grid-2">
-          <article class="card first-color">
-            <h3>Mission</h3>
-            <p>Prove that an experiment is only useful when you can reproduce it.</p>
-            <ol class="checklist">
-              <li><label><input type="checkbox" data-progress="w1-1" /> Create <code>experiments/week-01/</code>.</label></li>
-              <li><label><input type="checkbox" data-progress="w1-2" /> Write one question you want to test.</label></li>
-              <li><label><input type="checkbox" data-progress="w1-3" /> Run the same small script twice.</label></li>
-              <li><label><input type="checkbox" data-progress="w1-4" /> Save the command and result.</label></li>
-              <li><label><input type="checkbox" data-progress="w1-5" /> Explain why the two runs match or differ.</label></li>
-            </ol>
-          </article>
-          <article class="card fourth-color">
-            <h3>Teach-back check</h3>
-            <p>Without notes, answer these out loud:</p>
+    <section id="production" class="chapter" data-stop="4" data-accent="#8ed6ff">
+      <div class="story-card phase-panel fourth-panel">
+        <div class="phase-heading">
+          <p class="phase-index">04 / PRODUCTION + GOVERNANCE</p>
+          <h2>Ship the system like an engineer, govern it like it matters.</h2>
+          <p>Containerize it. Test it. Gate releases. Track risk. Know who approves what. Keep evidence that explains why a version was allowed to ship.</p>
+        </div>
+
+        <div class="visual-lesson reverse">
+          <div class="diagram-shell">
+            <div class="diagram-label">FROM COMMIT TO CONTROLLED RELEASE</div>
+            <pre class="mermaid">
+flowchart LR
+  C[Commit] --> U[Unit Tests]
+  U --> E[AI Evals]
+  E --> B[Container Build]
+  B --> A{Approval}
+  A --> R[Release]
+  R --> M[Monitor]
+  M --> I[Incident / Feedback]
+  I --> C
+  style C fill:#ffcece,stroke:#172033,stroke-width:2px
+  style U fill:#ffc1c8,stroke:#172033,stroke-width:2px
+  style E fill:#ffe3b0,stroke:#172033,stroke-width:2px
+  style B fill:#8ed6ff,stroke:#172033,stroke-width:2px
+  style A fill:#ffffff,stroke:#172033,stroke-width:2px
+  style R fill:#8ed6ff,stroke:#172033,stroke-width:2px
+  style M fill:#ffe3b0,stroke:#172033,stroke-width:2px
+  style I fill:#ffc1c8,stroke:#172033,stroke-width:2px
+            </pre>
+          </div>
+
+          <div class="capstone-card">
+            <p class="capstone-label">FINAL BUILD</p>
+            <h3>Governed AI Service</h3>
             <ul>
-              <li>What was my hypothesis?</li>
-              <li>What did I keep the same?</li>
-              <li>What did I change?</li>
-              <li>What evidence did I collect?</li>
-              <li>Could another person reproduce it?</li>
+              <li>FastAPI endpoint</li>
+              <li>Docker container</li>
+              <li>Automated tests + evals</li>
+              <li>Observability</li>
+              <li>Risk register + system card</li>
+              <li>Human approval policy</li>
             </ul>
-            <p>If you can explain those five things, you understand the core idea.</p>
-          </article>
+          </div>
+        </div>
+
+        <details class="week-drawer">
+          <summary>Weeks 10–12 <span>open the mini curriculum</span></summary>
+          <div class="week-list">
+            <div><b>Week 10</b><span>FastAPI + Docker</span><small>Serve and containerize your AI pipeline.</small></div>
+            <div><b>Week 11</b><span>CI/CD + model ops</span><small>Fail a release gate, then fix it.</small></div>
+            <div><b>Week 12</b><span>Responsible AI governance</span><small>Run a mock incident and approval review.</small></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="lab" class="chapter final-chapter" data-stop="5">
+      <div class="story-card final-card">
+        <p class="eyebrow">Start with your hands, not a textbook</p>
+        <h2>Your first 45-minute mission</h2>
+        <p class="lead">Prove that an experiment is useful only when you can reproduce it.</p>
+
+        <ol class="mission-list">
+          <li><label><input type="checkbox" data-progress="w1-1" /><span><b>1.</b> Create <code>experiments/week-01/</code>.</span></label></li>
+          <li><label><input type="checkbox" data-progress="w1-2" /><span><b>2.</b> Write one question you want to test.</span></label></li>
+          <li><label><input type="checkbox" data-progress="w1-3" /><span><b>3.</b> Run the same tiny script twice.</span></label></li>
+          <li><label><input type="checkbox" data-progress="w1-4" /><span><b>4.</b> Save the exact command and result.</span></label></li>
+          <li><label><input type="checkbox" data-progress="w1-5" /><span><b>5.</b> Explain why the two runs match or differ.</span></label></li>
+        </ol>
+
+        <div class="teach-back">
+          <p>CAN YOU SAY THIS WITHOUT NOTES?</p>
+          <strong>“My hypothesis was ____. I changed ____. I measured ____. The evidence says ____.”</strong>
+        </div>
+
+        <div class="final-links">
+          <a class="primary-button" href="docs/lesson-plan.md">Open full 12-week plan</a>
+          <a class="secondary-button" href="docs/homework.md">Open homework</a>
+          <a class="secondary-button" href="docs/progress-tracker.md">Track progress</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrapper">
-      <p><strong>AI Research Lab</strong> — build small, measure carefully, explain clearly.</p>
-      <p><a href="docs/visual-curriculum.md">Open the Mermaid diagram guide</a> · <a href="docs/lesson-plan.md">Open the detailed lesson plan</a></p>
-    </div>
-  </footer>
-  <script src="app.js"></script>
+  <noscript>
+    <div class="noscript">This visual curriculum needs JavaScript for the Three.js world and Mermaid.js diagrams. The Markdown lesson plan still works without JavaScript.</div>
+  </noscript>
+
+  <script type="module" src="app.js"></script>
 </body>
 </html>
