@@ -2,6 +2,9 @@
 
 A hands-on, visual learning and research repository for AI systems, retrieval, agents, evaluation, reliability, infrastructure, safety, and governance.
 
+**🚀 [Open the live AI Research Lab](https://ai-research-qhx4.netlify.app/)**  
+**💻 [View the GitHub repository](https://github.com/mergemaven11/ai-research)**
+
 ## 🌌 Start with the immersive visual curriculum
 
 This repo now includes an interactive learning experience built for **hands-on, visual learning**.
