@@ -1,0 +1,78 @@
+:root{
+  --first:#6C63FF;
+  --second:#D946EF;
+  --third:#10B981;
+  --fourth:#0EA5E9;
+}
+
+.brand-mark{
+  background:linear-gradient(135deg,#6C63FF 0%,#D946EF 46%,#0EA5E9 100%);
+  box-shadow:0 8px 24px rgba(108,99,255,.24);
+}
+
+.progress-track span{
+  background:linear-gradient(90deg,#6C63FF 0%,#D946EF 34%,#10B981 67%,#0EA5E9 100%);
+}
+
+.dashboard-hero{
+  background:
+    radial-gradient(circle at 86% 18%,rgba(217,70,239,.22),transparent 28%),
+    radial-gradient(circle at 72% 82%,rgba(14,165,233,.18),transparent 30%),
+    linear-gradient(125deg,#0b1020 0%,#171437 55%,#102b43 100%);
+}
+
+.dashboard-hero:after{
+  background:radial-gradient(circle,rgba(108,99,255,.34),rgba(108,99,255,0));
+}
+
+.dashboard-hero .eyebrow{color:#c6c2ff}
+
+.primary-button{
+  border-color:#6C63FF;
+  background:#6C63FF;
+  color:#fff;
+  box-shadow:0 8px 22px rgba(108,99,255,.18);
+}
+
+.primary-button:hover{background:#5b54e8;border-color:#5b54e8}
+
+.course-sidebar{
+  background:
+    radial-gradient(circle at 15% 0%,rgba(108,99,255,.16),transparent 24%),
+    linear-gradient(180deg,#0b1020 0%,#101327 100%);
+}
+
+.three-shell{
+  background:
+    radial-gradient(circle at 20% 20%,rgba(108,99,255,.14),transparent 30%),
+    radial-gradient(circle at 80% 80%,rgba(14,165,233,.12),transparent 30%),
+    linear-gradient(160deg,#080b17,#101a31);
+}
+
+.module-grid .module-card:nth-child(1){border-top:4px solid #6C63FF}
+.module-grid .module-card:nth-child(2){border-top:4px solid #D946EF}
+.module-grid .module-card:nth-child(3){border-top:4px solid #10B981}
+.module-grid .module-card:nth-child(4){border-top:4px solid #0EA5E9}
+
+.module-nav:nth-of-type(1) .module-dot,
+.module-grid .module-card:nth-child(1) .module-dot{background:#6C63FF!important}
+.module-nav:nth-of-type(2) .module-dot,
+.module-grid .module-card:nth-child(2) .module-dot{background:#D946EF!important}
+.module-nav:nth-of-type(3) .module-dot,
+.module-grid .module-card:nth-child(3) .module-dot{background:#10B981!important}
+.module-nav:nth-of-type(4) .module-dot,
+.module-grid .module-card:nth-child(4) .module-dot{background:#0EA5E9!important}
+
+.week-row:nth-child(-n+3) .week-row-num{background:#6C63FF!important;color:#fff}
+.week-row:nth-child(n+4):nth-child(-n+6) .week-row-num{background:#D946EF!important;color:#fff}
+.week-row:nth-child(n+7):nth-child(-n+9) .week-row-num{background:#10B981!important;color:#fff}
+.week-row:nth-child(n+10):nth-child(-n+12) .week-row-num{background:#0EA5E9!important;color:#fff}
+
+.week-chip{color:#fff}
+.lesson-title-card:before,
+.lab-section,
+.homework-section{transition:border-color .2s ease}
+
+@media (prefers-reduced-motion:reduce){
+  .brand-mark,.primary-button{transition:none}
+}
