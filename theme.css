@@ -73,6 +73,47 @@
 .lab-section,
 .homework-section{transition:border-color .2s ease}
 
+.progress-storage-card{
+  display:grid;
+  gap:4px;
+  padding:12px;
+  margin:0 0 10px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  background:rgba(255,255,255,.04);
+}
+
+.progress-storage-card strong{
+  color:#fff;
+  font-size:.84rem;
+}
+
+.progress-storage-card span{
+  color:rgba(255,255,255,.62);
+  font-size:.74rem;
+  line-height:1.35;
+}
+
+.reset-progress-button{
+  margin-top:7px;
+  width:100%;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;
+  padding:8px 10px;
+  background:transparent;
+  color:rgba(255,255,255,.82);
+  font:inherit;
+  font-size:.78rem;
+  cursor:pointer;
+}
+
+.reset-progress-button:hover,
+.reset-progress-button:focus-visible{
+  border-color:#D946EF;
+  color:#fff;
+  background:rgba(217,70,239,.12);
+}
+
 @media (prefers-reduced-motion:reduce){
   .brand-mark,.primary-button{transition:none}
 }
