@@ -1,6 +1,51 @@
 # AI Research Lab
 
-A hands-on learning and research repository for AI systems, retrieval, agents, evaluation, reliability, infrastructure, safety, and governance.
+A hands-on, visual learning and research repository for AI systems, retrieval, agents, evaluation, reliability, infrastructure, safety, and governance.
+
+## 🌌 Start with the immersive visual curriculum
+
+This repo now includes an interactive learning experience built for **hands-on, visual learning**.
+
+It uses:
+
+- **Three.js** for a full-screen 3D curriculum world;
+- **Mermaid.js** for live technical diagrams;
+- scroll-driven movement through the AI learning path;
+- clickable 3D curriculum landmarks;
+- the learning loop **See → Build → Break → Fix → Explain**;
+- browser-saved Week 1 progress checkboxes;
+- reduced-motion support and a skip-to-content path.
+
+The four curriculum phases use one consistent color language:
+
+```css
+.first-color  { background: #ffcece; } /* Foundations */
+.second-color { background: #ffc1c8; } /* AI Systems */
+.third-color  { background: #ffe3b0; } /* Quality + Safety */
+.fourth-color { background: #8ed6ff; } /* Production + Governance */
+```
+
+### Run the visual experience
+
+Because Three.js and Mermaid.js are loaded as browser modules, serve the repo over HTTP instead of double-clicking `index.html`.
+
+```bash
+python -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000
+```
+
+The visual UI lives in:
+
+```text
+index.html
+styles.css
+app.js
+```
 
 ## Learning goals
 
@@ -22,12 +67,15 @@ By completing this lab, you will be able to:
 | Quality and safety | 7–9 | Evaluation, observability, threats | Evaluation and red-team suite |
 | Production and governance | 10–12 | APIs, containers, CI, risk controls | Governed AI service |
 
-Start with the [12-week lesson plan](docs/lesson-plan.md), complete the [homework](docs/homework.md), and use the [project briefs](docs/projects.md) for portfolio deliverables. Track evidence in the [progress tracker](docs/progress-tracker.md).
+Use the immersive page as your visual map. For deeper reading, continue with the [12-week lesson plan](docs/lesson-plan.md), [homework](docs/homework.md), [project briefs](docs/projects.md), and [progress tracker](docs/progress-tracker.md).
 
 ## Repository structure
 
 ```text
 ai-research/
+├── index.html         # Immersive visual curriculum
+├── styles.css         # Color system + responsive UI
+├── app.js             # Three.js world + Mermaid.js setup
 ├── docs/
 │   ├── lesson-plan.md
 │   ├── homework.md
@@ -40,8 +88,7 @@ ai-research/
 ├── data/
 │   ├── raw/           # Never commit private or restricted data
 │   └── processed/
-├── reports/           # Findings, system cards, and evaluation reports
-└── README.md
+└── reports/           # Findings, system cards, and evaluation reports
 ```
 
 Create empty working directories as you begin each project; Git does not preserve empty directories.
@@ -65,7 +112,7 @@ Use fixed seeds where practical. Never commit API keys, proprietary work data, p
 
 A lesson is complete when its homework passes the stated acceptance criteria. A project is complete when it has working code, tests, a reproducible run command, an evaluation report, and a short demo in its README.
 
-## Suggested local workflow
+## Suggested Python workflow
 
 ```bash
 python -m venv .venv
