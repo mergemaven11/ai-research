@@ -3,293 +3,211 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="A hands-on, visual AI curriculum built as an immersive Three.js learning journey with Mermaid.js diagrams." />
-  <title>AI Research Lab — Immersive Visual Curriculum</title>
+  <meta name="description" content="A structured, hands-on AI research course with visual lessons, labs, Mermaid diagrams, and interactive Three.js concept models." />
+  <title>AI Research Lab — Course</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#story">Skip 3D experience</a>
+  <a class="skip-link" href="#main-content">Skip to course content</a>
 
-  <div id="experience" aria-hidden="true">
-    <canvas id="world-canvas"></canvas>
-    <div class="grain"></div>
-    <div class="vignette"></div>
-  </div>
-
-  <div class="loading-screen" id="loading-screen" role="status" aria-live="polite">
-    <div class="loading-mark">
-      <span></span><span></span><span></span><span></span>
+  <header class="site-header">
+    <div class="header-left">
+      <button class="icon-button mobile-only" id="nav-toggle" type="button" aria-label="Open course navigation" aria-expanded="false">☰</button>
+      <a class="brand" href="#course-home" data-home-link>
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>AI Research Lab</span>
+      </a>
     </div>
-    <p>Building your AI learning world…</p>
-  </div>
-
-  <header class="topbar">
-    <a class="brand" href="#intro" aria-label="AI Research Lab home">
-      <span class="brand-dot"></span>
-      <span>AI Research Lab</span>
-    </a>
-    <div class="topbar-actions">
-      <button id="explore-toggle" class="ghost-button" type="button" aria-pressed="false">Explore 3D</button>
-      <a class="ghost-button" href="docs/lesson-plan.md">Detailed notes</a>
+    <div class="header-actions">
+      <a href="docs/lesson-plan.md" class="text-link">Detailed notes</a>
+      <a href="docs/projects.md" class="outline-button">Projects</a>
     </div>
   </header>
 
-  <nav class="progress-rail" aria-label="Curriculum phases">
-    <a href="#foundations" data-stop-link="1" aria-label="Foundations"><span class="rail-dot first-color"></span><b>01</b></a>
-    <a href="#systems" data-stop-link="2" aria-label="AI systems"><span class="rail-dot second-color"></span><b>02</b></a>
-    <a href="#quality" data-stop-link="3" aria-label="Quality and safety"><span class="rail-dot third-color"></span><b>03</b></a>
-    <a href="#production" data-stop-link="4" aria-label="Production and governance"><span class="rail-dot fourth-color"></span><b>04</b></a>
-  </nav>
-
-  <div id="node-tooltip" class="node-tooltip" hidden></div>
-
-  <main id="story">
-    <section id="intro" class="chapter hero-chapter" data-stop="0">
-      <div class="story-card hero-card">
-        <p class="eyebrow">Three.js + Mermaid.js • hands-on visual learning</p>
-        <h1>Travel through an <span>AI system</span>, don’t just read about one.</h1>
-        <p class="lead">Scroll through a 3D learning world. Each district teaches one layer of modern AI with a picture, a tiny build, a controlled failure, and a teach-back check.</p>
-        <div class="hero-actions">
-          <a class="primary-button" href="#foundations">Enter the curriculum ↓</a>
-          <button class="secondary-button" id="motion-toggle" type="button" aria-pressed="false">Reduce motion</button>
-        </div>
-        <div class="legend" aria-label="Color legend">
-          <span><i class="first-color"></i>Foundations</span>
-          <span><i class="second-color"></i>AI Systems</span>
-          <span><i class="third-color"></i>Quality + Safety</span>
-          <span><i class="fourth-color"></i>Production + Governance</span>
-        </div>
-        <p class="scroll-cue">SCROLL TO MOVE THROUGH THE WORLD <span>↓</span></p>
+  <div class="app-shell">
+    <aside class="course-sidebar" id="course-sidebar" aria-label="Course navigation">
+      <div class="sidebar-course">
+        <span class="course-label">12-week guided course</span>
+        <h1>AI Systems Research</h1>
+        <p>Learn by seeing, building, testing, and explaining.</p>
       </div>
-    </section>
 
-    <section id="foundations" class="chapter" data-stop="1" data-accent="#ffcece">
-      <div class="story-card phase-panel first-panel">
-        <div class="phase-heading">
-          <p class="phase-index">01 / FOUNDATIONS</p>
-          <h2>First, learn how information becomes a model output.</h2>
-          <p>You do not start by memorizing transformer math. Start by watching information move through a simple system, then build one small piece yourself.</p>
+      <div class="sidebar-progress" aria-label="Course progress">
+        <div class="progress-copy">
+          <span>Your progress</span>
+          <strong id="sidebar-progress-text">0 of 12 weeks</strong>
         </div>
-
-        <div class="visual-lesson">
-          <div class="diagram-shell">
-            <div class="diagram-label">SEE IT</div>
-            <pre class="mermaid">
-flowchart LR
-  A[Text] --> B[Tokens]
-  B --> C[Embeddings]
-  C --> D[Model]
-  D --> E[Prediction]
-  style A fill:#ffcece,stroke:#172033,stroke-width:2px
-  style B fill:#ffc1c8,stroke:#172033,stroke-width:2px
-  style C fill:#ffe3b0,stroke:#172033,stroke-width:2px
-  style D fill:#8ed6ff,stroke:#172033,stroke-width:2px
-  style E fill:#ffffff,stroke:#172033,stroke-width:2px
-            </pre>
-          </div>
-
-          <div class="learning-stack">
-            <article><span>👀 SEE</span><p>Follow text → tokens → vectors → model → output.</p></article>
-            <article><span>🛠 BUILD</span><p>Train a tiny text classifier and save its exact run command.</p></article>
-            <article><span>🧪 BREAK</span><p>Change one variable: seed, data split, or feature method.</p></article>
-            <article><span>🔧 FIX</span><p>Make the experiment reproducible and compare against a baseline.</p></article>
-            <article><span>🧠 EXPLAIN</span><p>Teach back what changed and why the metric moved.</p></article>
-          </div>
-        </div>
-
-        <details class="week-drawer" open>
-          <summary>Weeks 1–3 <span>open the mini curriculum</span></summary>
-          <div class="week-list">
-            <div><b>Week 1</b><span>Reproducible experiments</span><small>Build the same benchmark twice.</small></div>
-            <div><b>Week 2</b><span>Machine learning basics</span><small>Train + compare a tiny classifier.</small></div>
-            <div><b>Week 3</b><span>Transformers + prompting</span><small>Compare three prompt strategies.</small></div>
-          </div>
-        </details>
+        <div class="progress-track"><span id="sidebar-progress-bar"></span></div>
       </div>
-    </section>
 
-    <section id="systems" class="chapter" data-stop="2" data-accent="#ffc1c8">
-      <div class="story-card phase-panel second-panel">
-        <div class="phase-heading">
-          <p class="phase-index">02 / AI SYSTEMS</p>
-          <h2>Now connect the model to knowledge and tools.</h2>
-          <p>The model is only one building. Retrieval, citations, tools, routing, and approval gates are the roads that make the whole city useful.</p>
+      <nav id="course-nav" class="course-nav"></nav>
+    </aside>
+
+    <main id="main-content" class="main-content">
+      <section id="course-home" class="course-home view is-active" data-view="home">
+        <div class="breadcrumb">AI Research Lab <span>›</span> Course Home</div>
+
+        <section class="course-hero">
+          <div class="hero-copy">
+            <div class="hero-kicker">BEGINNER → APPLIED</div>
+            <h2>Build a real understanding of modern AI systems.</h2>
+            <p>Not a wall of notes. You will move through short visual lessons, hands-on labs, checkpoints, and portfolio builds in a clear order.</p>
+            <div class="course-facts" aria-label="Course facts">
+              <span><b>12</b> weeks</span>
+              <span><b>4</b> modules</span>
+              <span><b>4</b> portfolio builds</span>
+              <span><b>6–8</b> hrs/week</span>
+            </div>
+          </div>
+          <div class="hero-progress-card">
+            <span class="small-label">NEXT STEP</span>
+            <h3 id="next-step-title">Week 1 · Reproducible experiments</h3>
+            <p id="next-step-copy">Start by learning what makes an AI experiment trustworthy and repeatable.</p>
+            <button class="primary-button" id="continue-button" type="button">Start Week 1</button>
+            <div class="mini-progress"><span id="hero-progress-bar"></span></div>
+            <small id="hero-progress-text">0% complete</small>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">HOW YOU'LL LEARN</span>
+              <h2>One repeatable rhythm every week.</h2>
+            </div>
+            <p>Each lesson is deliberately chunked so you can understand the picture first, then get technical.</p>
+          </div>
+          <div class="learning-method-grid">
+            <article><span class="method-icon">01</span><h3>See it</h3><p>Start with a diagram, animation, or concrete system picture.</p></article>
+            <article><span class="method-icon">02</span><h3>Build it</h3><p>Create the smallest working version with guided steps.</p></article>
+            <article><span class="method-icon">03</span><h3>Break + fix</h3><p>Change one variable, inspect the failure, then repair it.</p></article>
+            <article><span class="method-icon">04</span><h3>Explain it</h3><p>Use a short teach-back check to prove you understand it.</p></article>
+          </div>
+        </section>
+
+        <section class="section-block visual-lab-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">INTERACTIVE VISUAL</span>
+              <h2>See an AI application as a system.</h2>
+            </div>
+            <p>Drag your pointer across the model. Three.js is used here as a teaching aid—not as the whole interface.</p>
+          </div>
+          <div class="visual-lab-card">
+            <div class="canvas-wrap">
+              <canvas id="concept-canvas" aria-label="Interactive 3D model of an AI application pipeline"></canvas>
+              <div class="canvas-legend">
+                <span><i class="first-color"></i>Input</span>
+                <span><i class="second-color"></i>Retrieval</span>
+                <span><i class="third-color"></i>Reasoning</span>
+                <span><i class="fourth-color"></i>Delivery</span>
+              </div>
+            </div>
+            <div class="visual-explainer">
+              <span class="small-label">MENTAL MODEL</span>
+              <h3>The model is only one part.</h3>
+              <p>A useful AI application is a chain: user input, retrieval or tools, the model, checks, and a delivered answer.</p>
+              <button class="text-button" type="button" data-open-week="5">See how RAG fits into this →</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block" id="course-content-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">COURSE CONTENT</span>
+              <h2>4 modules · 12 weeks</h2>
+            </div>
+            <p>Open a module to see exactly what you will learn, build, and finish.</p>
+          </div>
+          <div id="module-list" class="module-list"></div>
+        </section>
+
+        <section class="section-block portfolio-section">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">WHAT YOU'LL SHIP</span>
+              <h2>Four portfolio projects—not just notes.</h2>
+            </div>
+          </div>
+          <div class="portfolio-grid">
+            <article class="portfolio-card phase-1"><span>Project 1</span><h3>Model Behavior Benchmark</h3><p>Compare prompts, measure outputs, and document reproducible evidence.</p></article>
+            <article class="portfolio-card phase-2"><span>Project 2</span><h3>Cited Research Assistant</h3><p>Build semantic retrieval, grounded answers, citations, and safe tool use.</p></article>
+            <article class="portfolio-card phase-3"><span>Project 3</span><h3>Evaluation + Safety Harness</h3><p>Automate quality checks, traces, regression gates, and red-team tests.</p></article>
+            <article class="portfolio-card phase-4"><span>Project 4</span><h3>Governed AI Service</h3><p>Ship a tested API with Docker, CI, observability, approvals, and risk evidence.</p></article>
+          </div>
+        </section>
+      </section>
+
+      <section id="lesson-view" class="lesson-view view" data-view="lesson" aria-live="polite">
+        <div class="lesson-toolbar">
+          <button class="back-button" id="back-to-course" type="button">← Course home</button>
+          <span id="lesson-module-label">Module 1</span>
         </div>
 
-        <div class="visual-lesson reverse">
-          <div class="diagram-shell">
-            <div class="diagram-label">RAG IN ONE PICTURE</div>
-            <pre class="mermaid">
-flowchart LR
-  Q[Question] --> R[Retrieve]
-  D[(Documents)] --> R
-  R --> E[Evidence]
-  E --> M[Model]
-  Q --> M
-  M --> A[Answer + Citation]
-  style Q fill:#ffcece,stroke:#172033,stroke-width:2px
-  style R fill:#ffc1c8,stroke:#172033,stroke-width:2px
-  style D fill:#ffe3b0,stroke:#172033,stroke-width:2px
-  style E fill:#ffe3b0,stroke:#172033,stroke-width:2px
-  style M fill:#8ed6ff,stroke:#172033,stroke-width:2px
-  style A fill:#ffffff,stroke:#172033,stroke-width:2px
-            </pre>
+        <article class="lesson-header">
+          <div>
+            <span id="lesson-week-label" class="lesson-week-label">Week 1</span>
+            <h2 id="lesson-title">Reproducible experiments</h2>
+            <p id="lesson-summary"></p>
+          </div>
+          <div class="lesson-meta">
+            <span>◷ <b id="lesson-duration">2–3 hours</b></span>
+            <span>◈ Visual lesson</span>
+            <span>⚒ Hands-on lab</span>
+          </div>
+        </article>
+
+        <div class="lesson-layout">
+          <div class="lesson-primary">
+            <section class="lesson-card">
+              <div class="card-heading"><span class="step-badge">1</span><div><small>FIRST</small><h3>Understand the picture</h3></div></div>
+              <div id="lesson-plain-english" class="plain-english"></div>
+              <div class="diagram-panel">
+                <span class="diagram-label">VISUAL MODEL</span>
+                <pre id="lesson-mermaid" class="mermaid"></pre>
+              </div>
+            </section>
+
+            <section class="lesson-card">
+              <div class="card-heading"><span class="step-badge">2</span><div><small>THEN</small><h3>Learn the important concepts</h3></div></div>
+              <ul id="lesson-learn-list" class="concept-list"></ul>
+            </section>
+
+            <section class="lesson-card lab-section">
+              <div class="card-heading"><span class="step-badge">3</span><div><small>HANDS-ON</small><h3>Build it yourself</h3></div></div>
+              <div id="lesson-lab-intro" class="lab-intro"></div>
+              <ol id="lesson-lab-steps" class="lab-steps"></ol>
+              <div class="success-box"><b>Done when:</b> <span id="lesson-done-when"></span></div>
+            </section>
+
+            <section class="lesson-card check-section">
+              <div class="card-heading"><span class="step-badge">4</span><div><small>CHECK YOURSELF</small><h3>Can you explain it?</h3></div></div>
+              <p id="quiz-question" class="quiz-question"></p>
+              <div id="quiz-options" class="quiz-options"></div>
+              <div id="quiz-feedback" class="quiz-feedback" role="status"></div>
+            </section>
           </div>
 
-          <div class="concept-callout">
-            <p class="big-word">RAG</p>
-            <p><strong>Plain English:</strong> look up useful evidence first, then let the model answer using that evidence.</p>
-            <p><strong>Hands-on test:</strong> ask a question whose answer is not in the documents. Your app should say “I don’t have enough evidence” instead of guessing.</p>
-          </div>
+          <aside class="lesson-side">
+            <div class="side-card sticky-card">
+              <span class="small-label">THIS WEEK</span>
+              <h3 id="side-lesson-title">Reproducible experiments</h3>
+              <div class="side-divider"></div>
+              <div class="side-row"><span>Status</span><b id="lesson-status">Not started</b></div>
+              <div class="side-row"><span>Time</span><b id="side-duration">2–3 hrs</b></div>
+              <div class="side-row"><span>Artifact</span><b id="lesson-artifact">Experiment log</b></div>
+              <button class="complete-button" id="mark-complete" type="button">Mark week complete</button>
+              <button class="next-week-button" id="next-week-button" type="button">Next week →</button>
+            </div>
+          </aside>
         </div>
-
-        <details class="week-drawer">
-          <summary>Weeks 4–6 <span>open the mini curriculum</span></summary>
-          <div class="week-list">
-            <div><b>Week 4</b><span>Embeddings + search</span><small>Turn chunks into vectors and retrieve them.</small></div>
-            <div><b>Week 5</b><span>RAG</span><small>Build cited answers from retrieved evidence.</small></div>
-            <div><b>Week 6</b><span>Agents + tools</span><small>Add two tools and one approval gate.</small></div>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <section id="quality" class="chapter" data-stop="3" data-accent="#ffe3b0">
-      <div class="story-card phase-panel third-panel">
-        <div class="phase-heading">
-          <p class="phase-index">03 / QUALITY + SAFETY</p>
-          <h2>Make failure visible before users find it for you.</h2>
-          <p>Reliable AI is not “the demo looked good.” You need repeatable tests, traces, red-team cases, release gates, and an explanation for every important failure.</p>
-        </div>
-
-        <div class="visual-lesson">
-          <div class="diagram-shell">
-            <div class="diagram-label">TEST THE SYSTEM</div>
-            <pre class="mermaid">
-flowchart TD
-  T[Test Case] --> S[Run System]
-  S --> O[Observe Output]
-  O --> G{Pass Gate?}
-  G -- Yes --> P[Ship]
-  G -- No --> F[Inspect Trace]
-  F --> X[Fix]
-  X --> T
-  style T fill:#ffcece,stroke:#172033,stroke-width:2px
-  style S fill:#ffc1c8,stroke:#172033,stroke-width:2px
-  style O fill:#ffe3b0,stroke:#172033,stroke-width:2px
-  style G fill:#8ed6ff,stroke:#172033,stroke-width:2px
-  style P fill:#ffffff,stroke:#172033,stroke-width:2px
-  style F fill:#ffe3b0,stroke:#172033,stroke-width:2px
-  style X fill:#8ed6ff,stroke:#172033,stroke-width:2px
-            </pre>
-          </div>
-
-          <div class="lab-card">
-            <span class="lab-tag">BREAK IT ON PURPOSE</span>
-            <h3>Your lab</h3>
-            <p>Create five inputs designed to make the system fail. Record what happened. Add one defense. Run the same five inputs again.</p>
-            <div class="score-strip"><span>Before</span><b>→</b><span>Defense</span><b>→</b><span>After</span></div>
-          </div>
-        </div>
-
-        <details class="week-drawer">
-          <summary>Weeks 7–9 <span>open the mini curriculum</span></summary>
-          <div class="week-list">
-            <div><b>Week 7</b><span>Evaluation engineering</span><small>Turn expected behavior into release gates.</small></div>
-            <div><b>Week 8</b><span>Observability</span><small>Diagnose failures from logs + traces.</small></div>
-            <div><b>Week 9</b><span>AI security</span><small>Red-team safely and measure defenses.</small></div>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <section id="production" class="chapter" data-stop="4" data-accent="#8ed6ff">
-      <div class="story-card phase-panel fourth-panel">
-        <div class="phase-heading">
-          <p class="phase-index">04 / PRODUCTION + GOVERNANCE</p>
-          <h2>Ship the system like an engineer, govern it like it matters.</h2>
-          <p>Containerize it. Test it. Gate releases. Track risk. Know who approves what. Keep evidence that explains why a version was allowed to ship.</p>
-        </div>
-
-        <div class="visual-lesson reverse">
-          <div class="diagram-shell">
-            <div class="diagram-label">FROM COMMIT TO CONTROLLED RELEASE</div>
-            <pre class="mermaid">
-flowchart LR
-  C[Commit] --> U[Unit Tests]
-  U --> E[AI Evals]
-  E --> B[Container Build]
-  B --> A{Approval}
-  A --> R[Release]
-  R --> M[Monitor]
-  M --> I[Incident / Feedback]
-  I --> C
-  style C fill:#ffcece,stroke:#172033,stroke-width:2px
-  style U fill:#ffc1c8,stroke:#172033,stroke-width:2px
-  style E fill:#ffe3b0,stroke:#172033,stroke-width:2px
-  style B fill:#8ed6ff,stroke:#172033,stroke-width:2px
-  style A fill:#ffffff,stroke:#172033,stroke-width:2px
-  style R fill:#8ed6ff,stroke:#172033,stroke-width:2px
-  style M fill:#ffe3b0,stroke:#172033,stroke-width:2px
-  style I fill:#ffc1c8,stroke:#172033,stroke-width:2px
-            </pre>
-          </div>
-
-          <div class="capstone-card">
-            <p class="capstone-label">FINAL BUILD</p>
-            <h3>Governed AI Service</h3>
-            <ul>
-              <li>FastAPI endpoint</li>
-              <li>Docker container</li>
-              <li>Automated tests + evals</li>
-              <li>Observability</li>
-              <li>Risk register + system card</li>
-              <li>Human approval policy</li>
-            </ul>
-          </div>
-        </div>
-
-        <details class="week-drawer">
-          <summary>Weeks 10–12 <span>open the mini curriculum</span></summary>
-          <div class="week-list">
-            <div><b>Week 10</b><span>FastAPI + Docker</span><small>Serve and containerize your AI pipeline.</small></div>
-            <div><b>Week 11</b><span>CI/CD + model ops</span><small>Fail a release gate, then fix it.</small></div>
-            <div><b>Week 12</b><span>Responsible AI governance</span><small>Run a mock incident and approval review.</small></div>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <section id="lab" class="chapter final-chapter" data-stop="5">
-      <div class="story-card final-card">
-        <p class="eyebrow">Start with your hands, not a textbook</p>
-        <h2>Your first 45-minute mission</h2>
-        <p class="lead">Prove that an experiment is useful only when you can reproduce it.</p>
-
-        <ol class="mission-list">
-          <li><label><input type="checkbox" data-progress="w1-1" /><span><b>1.</b> Create <code>experiments/week-01/</code>.</span></label></li>
-          <li><label><input type="checkbox" data-progress="w1-2" /><span><b>2.</b> Write one question you want to test.</span></label></li>
-          <li><label><input type="checkbox" data-progress="w1-3" /><span><b>3.</b> Run the same tiny script twice.</span></label></li>
-          <li><label><input type="checkbox" data-progress="w1-4" /><span><b>4.</b> Save the exact command and result.</span></label></li>
-          <li><label><input type="checkbox" data-progress="w1-5" /><span><b>5.</b> Explain why the two runs match or differ.</span></label></li>
-        </ol>
-
-        <div class="teach-back">
-          <p>CAN YOU SAY THIS WITHOUT NOTES?</p>
-          <strong>“My hypothesis was ____. I changed ____. I measured ____. The evidence says ____.”</strong>
-        </div>
-
-        <div class="final-links">
-          <a class="primary-button" href="docs/lesson-plan.md">Open full 12-week plan</a>
-          <a class="secondary-button" href="docs/homework.md">Open homework</a>
-          <a class="secondary-button" href="docs/progress-tracker.md">Track progress</a>
-        </div>
-      </div>
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 
   <noscript>
-    <div class="noscript">This visual curriculum needs JavaScript for the Three.js world and Mermaid.js diagrams. The Markdown lesson plan still works without JavaScript.</div>
+    <div class="noscript">This course interface uses JavaScript for navigation and diagrams. You can still use <a href="docs/lesson-plan.md">the Markdown lesson plan</a>.</div>
   </noscript>
 
   <script type="module" src="app.js"></script>
