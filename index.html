@@ -7,7 +7,7 @@
   <title>AI Research Lab — 12-Week Learning Platform</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css?v=course-platform-20260912-3" />
-  <link rel="stylesheet" href="theme.css?v=course-identity-20260912-2" />
+  <link rel="stylesheet" href="theme.css?v=course-identity-20260912-3" />
 </head>
 <body>
   <a class="skip-link" href="#app-main">Skip to course content</a>
@@ -50,13 +50,17 @@
       <nav id="week-navigation"></nav>
 
       <div class="sidebar-footer">
+        <div class="course-resources-card">
+          <span class="resource-kicker">Course resources</span>
+          <strong>Need the big picture?</strong>
+          <span>See the full 12-week path without leaving the learning platform.</span>
+          <button class="course-guide-button" type="button" data-open-course-guide>Open course guide</button>
+        </div>
         <div class="progress-storage-card">
           <strong>Guest progress</strong>
           <span>Saved privately on this device.</span>
           <button id="reset-progress" class="reset-progress-button" type="button">Reset progress</button>
         </div>
-        <a href="docs/lesson-plan.md">Full text syllabus</a>
-        <a href="docs/progress-tracker.md">Progress notes</a>
       </div>
     </aside>
 
@@ -65,6 +69,35 @@
       <section id="lesson-view" class="view" hidden></section>
     </main>
   </div>
+
+  <dialog id="course-guide-dialog" class="course-guide-dialog" aria-labelledby="course-guide-title">
+    <div class="course-guide-shell">
+      <div class="course-guide-head">
+        <div>
+          <p class="eyebrow">Your 12-week roadmap</p>
+          <h2 id="course-guide-title">AI Systems Engineering</h2>
+          <p>Learn each topic first, prove understanding, then move into the lab and homework.</p>
+        </div>
+        <button class="course-guide-close" type="button" data-close-course-guide aria-label="Close course guide">×</button>
+      </div>
+
+      <div class="course-guide-flow" aria-label="Learning sequence">
+        <span>Learn</span><b>→</b><span>Visualize</span><b>→</b><span>Check</span><b>→</b><span>Lab</span><b>→</b><span>Homework</span>
+      </div>
+
+      <div class="course-guide-modules">
+        <article><span class="guide-number">01</span><div><strong>Foundations</strong><small>Weeks 1–3</small><p>Experiments, machine learning, transformers, and prompting.</p></div></article>
+        <article><span class="guide-number">02</span><div><strong>AI Application Systems</strong><small>Weeks 4–6</small><p>Embeddings, semantic search, RAG, agents, and tool use.</p></div></article>
+        <article><span class="guide-number">03</span><div><strong>Quality, Reliability & Safety</strong><small>Weeks 7–9</small><p>Evaluation, observability, red teaming, and release gates.</p></div></article>
+        <article><span class="guide-number">04</span><div><strong>Production & Governance</strong><small>Weeks 10–12</small><p>Serving, CI/CD, model operations, and responsible AI governance.</p></div></article>
+      </div>
+
+      <div class="course-guide-note">
+        <strong>120 guided lessons</strong>
+        <span>Ten lessons per week, with labs and homework only after the learning sequence is complete.</span>
+      </div>
+    </div>
+  </dialog>
 
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
@@ -78,5 +111,6 @@
   <script type="module" src="app.js?v=course-platform-20260912-3"></script>
   <script src="lesson-depth.js?v=course-depth-20260912-2" defer></script>
   <script src="progress-controls.js?v=progress-controls-20260912-1" defer></script>
+  <script src="course-guide.js?v=course-guide-20260912-1" defer></script>
 </body>
 </html>
