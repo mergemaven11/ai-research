@@ -1,5 +1,12 @@
 # AI Research Lab
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ec3090db-2d95-48fe-869f-f9c478723ea5/deploy-status)](https://app.netlify.com/projects/ai-research-qhx4/deploys)
+[![Live Course](https://img.shields.io/badge/Live-AI_Research_Lab-37bfa4)](https://ai-research-qhx4.netlify.app/)
+![JavaScript](https://img.shields.io/badge/JavaScript-Learning_UI-F7DF1E?logo=javascript&logoColor=111)
+![Three.js](https://img.shields.io/badge/Three.js-3D-000000?logo=threedotjs&logoColor=white)
+![Mermaid](https://img.shields.io/badge/Mermaid-Diagrams-FF3670)
+[![Last Commit](https://img.shields.io/github/last-commit/mergemaven11/ai-research)](https://github.com/mergemaven11/ai-research/commits/main)
+
 A hands-on, visual learning and research repository for AI systems, retrieval, agents, evaluation, reliability, infrastructure, safety, and governance.
 
 **🚀 [Open the live AI Research Lab](https://ai-research-qhx4.netlify.app/)**  
